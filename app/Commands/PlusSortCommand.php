@@ -19,7 +19,7 @@ class PlusSortCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Usage: "s+t+r+i+n+g"';
 
     static function PlusSort($s){
         $array = explode('+', $s);

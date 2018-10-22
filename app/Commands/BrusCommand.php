@@ -19,7 +19,7 @@ class BrusCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Usage example: brus "1 2 4" "2 3 6"';
 
     /**
      * Execute the console command.
