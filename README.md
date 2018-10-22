@@ -1,37 +1,101 @@
-<p align="center">
-    <img title="Laravel Zero" height="100" src="https://raw.githubusercontent.com/laravel-zero/docs/master/images/logo/laravel-zero-readme.png" />
-</p>
+# Powered by Laravel Zero
 
-<p align="center">
-  <a href="https://travis-ci.org/laravel-zero/framework"><img src="https://img.shields.io/travis/laravel-zero/framework/stable.svg" alt="Build Status"></img></a>
-  <a href="https://scrutinizer-ci.com/g/laravel-zero/framework"><img src="https://img.shields.io/scrutinizer/g/laravel-zero/framework.svg" alt="Quality Score"></img></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://poser.pugx.org/laravel-zero/framework/d/total.svg" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://poser.pugx.org/laravel-zero/framework/v/stable.svg" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/laravel-zero/framework"><img src="https://poser.pugx.org/laravel-zero/framework/license.svg" alt="License"></a>
-</p>
+## Задача 1
 
-<h4> <center>This is a <bold>community project</bold> and not an official Laravel one </center></h4>
+```bash
+./tbf isequal {m} {n}
+```
 
-Laravel Zero was created by, and is maintained by [Nuno Maduro](https://github.com/nunomaduro), and is a micro-framework that provides an elegant starting point for your console application. It is an **unofficial** and customized version of Laravel optimized for building command-line applications.
+### Код:
 
-- Built on top of the [Laravel](https://laravel.com) components.
-- Optional installation of Laravel [Eloquent](http://laravel-zero.com/#/?id=database), Laravel [Logging](http://laravel-zero.com/#/?id=log) and many others.
-- Supports interactive [menus](http://laravel-zero.com/#/?id=interactive-menus) and [desktop notifications](http://laravel-zero.com/#/?id=desktop-notifications) on Linux, Windows & MacOS.
-- Ships with a [Scheduler](http://laravel-zero.com/#/?id=scheduler) and a [Standalone Compiler](http://laravel-zero.com/#/?id=build-a-standalone-application).
-- Integration with [Collision](https://github.com/nunomaduro/collision) - Beautiful error reporting
+https://github.com/vvmspace/tbf/blob/master/app/Commands/IsEqualCommand.php
 
-------
+```php
 
-## Documentation
+($m == $n) ? 'OK' : 'ERROR'
 
-For full documentation, visit [laravel-zero.com](http://laravel-zero.com/).
+```
 
-## Support the development
-**Do you like this project? Support it by donating**
 
-- PayPal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=66BYDWAT92N6L)
-- Patreon: [Donate](https://www.patreon.com/nunomaduro)
+## Задача 2
 
-## License
 
-Laravel Zero is an open-source software licensed under the [MIT license](https://github.com/laravel-zero/laravel-zero/blob/stable/LICENSE.md).
+```bash
+./tbf plussort s+t+r+i+n+g
+```
+
+### Код:
+
+https://github.com/vvmspace/tbf/blob/master/app/Commands/PlusSortCommand.php
+
+
+```php
+static function PlusSort($s){
+	$array = explode('+', $s);
+	sort($array);
+	return implode('+', $array);
+}
+```
+
+## Задача 4
+
+```bash
+./tbf bindec 47
+```
+
+### Код:
+
+```php
+    public function handle()
+    {
+        $n = $this->argument('some47');
+        if(!preg_match('/^[47]+$/', $n)) {
+            $this->error('Wrong number');
+            exit;
+        }
+        $bin = str_replace([4,7], [0,1], $n);
+        $dec = bindec($bin)+1;
+        $this->info($dec);
+    }
+```
+
+https://github.com/vvmspace/tbf/blob/master/app/Commands/BinDecCommand.php
+
+
+## Задача 5
+
+
+```bash
+./tbf checker input_file.txt output_file.txt
+```
+
+### Код:
+
+Для неё собственно и поднимался репозиторий, лучше смотреть код команды целиком:
+
+https://github.com/vvmspace/tbf/blob/master/app/Commands/CheckerCommand.php
+
+
+## Задача 6
+
+На вход идут две кучки брусков в одиночных кавычках через пробел, количество брусков не нужно:
+
+```bash
+./tbf brus '1 3 4 5' '2 3 4 7'
+```
+
+### Код:
+
+```php
+    static function BCnt($first, $second){
+        $n = 0;
+        foreach($first as $a){
+            $n += count(array_filter($second, function($b) use ($a){
+                return ($b == $a + 1) || ($b == $a - 1);
+            }));
+        }
+        return $n;
+    }
+```
+
+https://github.com/vvmspace/tbf/blob/master/app/Commands/BrusCommand.php
