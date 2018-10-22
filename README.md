@@ -101,3 +101,16 @@ https://github.com/vvmspace/tbf/blob/master/app/Commands/CheckerCommand.php
 ```
 
 https://github.com/vvmspace/tbf/blob/master/app/Commands/BrusCommand.php
+
+
+## Задача 8
+
+Про доминошки, количество доминошек не нужно, пример запуска:
+
+```bash
+./tbf domino 11 22 32 12 45
+```
+
+### Код:
+
+https://github.com/vvmspace/tbf/blob/master/app/Commands/DominoCommand.php
