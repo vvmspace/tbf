@@ -19,7 +19,7 @@ class DominoCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Usage example: domino 12 21 33 44 55';
 
     /**
      * Execute the console command.
