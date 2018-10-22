@@ -38,9 +38,17 @@ class CheckerCommand extends Command
         if(file_exists($input)){
             $this->info('File ' . $input . ' exist');
             $fi = fopen($input, 'r');
+            $fo = fopen($output, 'w');
             while (($host = fgets($fi)) !== false){
                 $host = trim($host);
                 $this->info('Checking ' . $host);
+                if(static::Check('http://' . $host)){
+                    $this->info('Ok');
+                    fputs($fo, "$host\r\n");
+                    $first = $first ?? $host;
+                }else{
+                    $this->warn('Error');
+                }
             }
             fclose($fi);
         }else{
