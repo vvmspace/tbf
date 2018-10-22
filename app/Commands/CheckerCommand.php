@@ -37,6 +37,11 @@ class CheckerCommand extends Command
 
         if(file_exists($input)){
             $this->info('File ' . $input . ' exist');
+            $fi = fopen($input, 'r');
+            while (($host = fgets($fi)) !== false){
+                $this->info('Checking ' . $host);
+            }
+            fclose($fi);
         }else{
             $this->error('File ' . $input . ' not exist');
         }
