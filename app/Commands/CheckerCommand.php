@@ -34,6 +34,12 @@ class CheckerCommand extends Command
         $this->info('Input file: ' . $input);
         $this->info('Output file: ' . $output);
         $this->info('');
+
+        if(file_exists($input)){
+            $this->info('File ' . $input . ' exist');
+        }else{
+            $this->error('File ' . $input . ' not exist');
+        }
     }
 
     /**
