@@ -1,5 +1,7 @@
 # Powered by Laravel Zero
 
+Билд лежит в app/builds, нужен php 7.2
+
 ## Задача 1
 
 ```bash
