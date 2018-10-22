@@ -31,6 +31,8 @@ class CheckerCommand extends Command
         $input = $this->argument('input');
         $output = $this->argument('output');
 
+        $first = null;
+
         $this->info('Input file: ' . $input);
         $this->info('Output file: ' . $output);
         $this->info('');
@@ -53,6 +55,10 @@ class CheckerCommand extends Command
             fclose($fi);
         }else{
             $this->error('File ' . $input . ' not exist');
+        }
+
+        if(!empty($first)){
+            exec('google-chrome http://' . $first);
         }
     }
 
