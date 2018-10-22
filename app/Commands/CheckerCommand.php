@@ -47,6 +47,18 @@ class CheckerCommand extends Command
         }
     }
 
+
+    static function Check($url, $timeout = 200){
+        $curlHandle = curl_init();
+        curl_setopt($curlHandle, CURLOPT_URL, $url);
+        curl_setopt($curlHandle, CURLOPT_HEADER, true);
+        curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curlHandle, CURLOPT_TIMEOUT_MS, $timeout);
+        curl_exec($curlHandle);
+        $response = curl_getinfo($curlHandle, CURLINFO_HTTP_CODE);
+        curl_close($curlHandle);
+        return ($response > 0) && ($response < 400);
+    }
     /**
      * Define the command's schedule.
      *
