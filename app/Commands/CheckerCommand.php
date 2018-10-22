@@ -28,7 +28,12 @@ class CheckerCommand extends Command
      */
     public function handle()
     {
-        //
+        $input = $this->argument('input');
+        $output = $this->argument('output');
+
+        $this->info('Input file: ' . $input);
+        $this->info('Output file: ' . $output);
+        $this->info('');
     }
 
     /**
