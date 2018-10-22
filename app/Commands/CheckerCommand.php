@@ -39,6 +39,7 @@ class CheckerCommand extends Command
             $this->info('File ' . $input . ' exist');
             $fi = fopen($input, 'r');
             while (($host = fgets($fi)) !== false){
+                $host = trim($host);
                 $this->info('Checking ' . $host);
             }
             fclose($fi);
@@ -48,7 +49,7 @@ class CheckerCommand extends Command
     }
 
 
-    static function Check($url, $timeout = 200){
+    static function Check($url, $timeout = 1000){
         $curlHandle = curl_init();
         curl_setopt($curlHandle, CURLOPT_URL, $url);
         curl_setopt($curlHandle, CURLOPT_HEADER, true);
